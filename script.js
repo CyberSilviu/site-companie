@@ -1,3 +1,26 @@
+// Intro splash screen
+(function () {
+    const overlay = document.getElementById('intro-overlay');
+    if (!overlay) return;
+
+    document.body.style.overflow = 'hidden';
+
+    const dismiss = () => {
+        overlay.classList.add('hidden');
+        overlay.addEventListener('transitionend', () => {
+            overlay.remove();
+            document.body.style.overflow = '';
+        }, { once: true });
+    };
+
+    const timer = setTimeout(dismiss, 4000);
+
+    overlay.addEventListener('click', () => {
+        clearTimeout(timer);
+        dismiss();
+    });
+})();
+
 // Initialize AOS Animation Library
 AOS.init({
     duration: 800,
